@@ -2,7 +2,7 @@
 
 ## Authenticate with Openshift
 
-oc login --server=https://api.keyhole-ocp4.be1i.p1.openshiftapps.com:6443 --username=$OPENSHIFT_USER --password=$OPENSHIFT_PASSWORD
+`oc login --server=$OPENSHIFT_SERVER --username=$OPENSHIFT_USER --password=$OPENSHIFT_PASSWORD`
 
 ## Install Confluent
 
@@ -12,9 +12,11 @@ oc login --server=https://api.keyhole-ocp4.be1i.p1.openshiftapps.com:6443 --user
 
 ### Add the Confluent Helm repo
 
-`helm repo add confluentinc https://packages.confluent.io/helm`
+```
+helm repo add confluentinc https://packages.confluent.io/helm
 
-`helm repo update`
+helm repo update
+```
 
 ### Operators
 
@@ -32,7 +34,10 @@ oc login --server=https://api.keyhole-ocp4.be1i.p1.openshiftapps.com:6443 --user
 
 ### Install the Confluent Operator
 
-`helm upgrade --install confluent-operator confluentinc/confluent-for-kubernetes \ --set podSecurity.enabled=false --namespace confluent`
+```
+helm upgrade --install confluent-operator confluentinc/confluent-for-kubernetes \ 
+  --set podSecurity.enabled=false --namespace confluent
+```
 
 ### Stand up the desired Confluent services
 
@@ -54,27 +59,25 @@ oc login --server=https://api.keyhole-ocp4.be1i.p1.openshiftapps.com:6443 --user
 ## Install Flux
 
 ### Set policy for flux to run as non-root
+```
+oc adm policy add-scc-to-user nonroot system:serviceaccount:$FLUX_NS:kustomize-controller
 
-`oc adm policy add-scc-to-user nonroot system:serviceaccount:$FLUX_NS:kustomize-controller`
+oc adm policy add-scc-to-user nonroot system:serviceaccount:$FLUX_NS:helm-controller
 
-`oc adm policy add-scc-to-user nonroot system:serviceaccount:$FLUX_NS:helm-controller`
+oc adm policy add-scc-to-user nonroot system:serviceaccount:$FLUX_NS:source-controller
 
-`oc adm policy add-scc-to-user nonroot system:serviceaccount:$FLUX_NS:source-controller`
+oc adm policy add-scc-to-user nonroot system:serviceaccount:$FLUX_NS:notification-controller
 
-`oc adm policy add-scc-to-user nonroot system:serviceaccount:$FLUX_NS:notification-controller`
+oc adm policy add-scc-to-user nonroot system:serviceaccount:$FLUX_NS:image-automation-controller
 
-`oc adm policy add-scc-to-user nonroot system:serviceaccount:$FLUX_NS:image-automation-controller`
-
-`oc adm policy add-scc-to-user nonroot system:serviceaccount:$FLUX_NS:image-reflector-controller`
+oc adm policy add-scc-to-user nonroot system:serviceaccount:$FLUX_NS:image-reflector-controller
+```
 
 ### Bootstrap Flux
 
-`flux bootstrap github \ --owner=in-the-keyhole \ --repository=nestle-openshift-kafka-demo \ --path=clusters/my-cluster \ --personal`
-
-<!-- flux bootstrap github \
-  --token-auth \
-  --hostname=my-github-enterprise.com \
-  --owner=my-github-organization \
-  --repository=my-repository \
-  --branch=main \
-  --path=clusters/my-cluster -->
+```
+flux bootstrap github \
+  --owner=$GITHUB_ORGANIZATION \
+  --repository=nestle-openshift-confluent-demo \
+  --path=clusters/production
+```
