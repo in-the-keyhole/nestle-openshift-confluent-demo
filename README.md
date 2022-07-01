@@ -1,14 +1,17 @@
 # Nestle Openshift | Confluent Kafka configuration
 
 ## Authenticate with Openshift
-
-`oc login --server=$OPENSHIFT_SERVER --username=$OPENSHIFT_USER --password=$OPENSHIFT_PASSWORD`
+```
+oc login --server=$OPENSHIFT_SERVER --username=$OPENSHIFT_USER --password=$OPENSHIFT_PASSWORD
+```
 
 ## Install Confluent
 
 ### Create an Openshift project
 
-`oc new-project confluent --display-name=Confluent`
+```
+oc new-project confluent --display-name=Confluent`
+```
 
 ### Add the Confluent Helm repo
 
@@ -40,8 +43,9 @@ helm upgrade --install confluent-operator confluentinc/confluent-for-kubernetes 
 ```
 
 ### Stand up the desired Confluent services
-
-`oc apply -f samples/confluent-platform-with-defaultSCC.yaml`
+```
+oc apply -f samples/confluent-platform-with-defaultSCC.yaml
+```
 
 > wait for all pods to be running (via oc get pods -w)
 
@@ -50,11 +54,14 @@ helm upgrade --install confluent-operator confluentinc/confluent-for-kubernetes 
 > Forward port for Control Center Dashboard
 
 > Can also create a route to control center service on port 9021
-> `oc port-forward controlcenter-0 9021:9021`
+```
+oc port-forward controlcenter-0 9021:9021
+```
 
 ### Test installation using demo producer app
-
-`oc apply -f samples/producer-app-data.yaml`
+```
+oc apply -f samples/producer-app-data.yaml`
+```
 
 ## Install Flux
 
