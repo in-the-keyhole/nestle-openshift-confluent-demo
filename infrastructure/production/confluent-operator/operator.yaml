@@ -14,6 +14,10 @@ metadata:
   name: confluent-operator
   namespace: flux-system
 spec:
+  releaseName: confluent-operator
+  install:
+    createNamespace: true
+  targetNamespace: confluent
   chart:
     spec:
       chart: confluent-for-kubernetes
@@ -21,9 +25,6 @@ spec:
         kind: HelmRepository
         name: confluentinc
       version: 2.3.1
-  targetNamespace: confluent
-  install:
-    createNamespace: true
   values:
     podSecurity:
       enabled: false
