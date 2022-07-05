@@ -21,7 +21,7 @@ spec:
         kind: HelmRepository
         name: confluentinc
       version: 2.3.1
-      values:
-        podSecurity:
-          enabled: false
+  values:
+    podSecurity:
+      enabled: false
   interval: 1m0s
