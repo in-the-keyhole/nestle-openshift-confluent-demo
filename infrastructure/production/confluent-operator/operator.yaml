@@ -22,8 +22,7 @@ spec:
         name: confluentinc
       version: 2.3.1
   targetNamespace: confluent
-  install:
-    createNamespace: true
+  createNamespace: true
   values:
     podSecurity:
       enabled: false
