@@ -3,7 +3,7 @@ apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
   name: confluentinc
-  namespace: confluent
+  namespace: flux-system
 spec:
   interval: 1m0s
   url: https://packages.confluent.io/helm
