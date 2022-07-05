@@ -1,3 +1,13 @@
+kind: Project
+apiVersion: project.openshift.io/v1
+metadata:
+  name: confluent
+  labels:
+    kubernetes.io/metadata.name: confluent
+  annotations:
+    openshift.io/description: ''
+    openshift.io/display-name: Confluent
+---
 apiVersion: platform.confluent.io/v1beta1
 kind: Zookeeper
 metadata:
