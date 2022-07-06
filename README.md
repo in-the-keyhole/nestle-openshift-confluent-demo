@@ -6,7 +6,7 @@ oc login --server=$OPENSHIFT_SERVER --username=$OPENSHIFT_USER --password=$OPENS
 ```
 
 ### Install Flux via OperatorHub
-Browse to OperatorHub in the Openshift console - find Flux, and choose Install
+Browse to OperatorHub in the Openshift console - find Flux, and choose Install accepting defaults
 
 #### Operators
 
@@ -16,28 +16,13 @@ Browse to OperatorHub in the Openshift console - find Flux, and choose Install
 
 > For example, the Confluent Operator plays the role of the Managment Control Plane, ensuring that the desired configuration is achieved
 
-#### SCC
 
-> Security context constraints (SCC) that control the actions that a pod can perform and what it has the ability to access.
-> See https://docs.openshift.com/container-platform/3.11/architecture/additional_concepts/authorization.html#security-context-constraints
-
-
-### Disable the custom pod security context, use the default context
-
-### Install the Confluent Operator
-
+### Bootstrap Flux
 ```
-helm upgrade --install confluent-operator confluentinc/confluent-for-kubernetes \ 
-  --set podSecurity.enabled=false --namespace confluent
+oc apply -f bootstrap/bootstrap.yaml
 ```
 
-### Stand up the desired Confluent services
-```
-oc apply -f samples/confluent-platform-with-defaultSCC.yaml
-```
-
-> wait for all pods to be running (via oc get pods -w)
-
+This will create a GitRepository pointed to the main branch of this repository, and a Kustomization that will automate deployment of clusters/production.  This will in turn, deploy resources defined by operators, followed by infrastructure, and finally by apps.
 ### Expose Control Center Dashboard
 
 > Forward port for Control Center Dashboard
@@ -47,33 +32,4 @@ oc apply -f samples/confluent-platform-with-defaultSCC.yaml
 oc port-forward controlcenter-0 9021:9021
 ```
 
-### Test installation using demo producer app
-```
-oc apply -f samples/producer-app-data.yaml`
-```
-
-## Install Flux
-
-### Set policy for flux to run as non-root
-```
-oc adm policy add-scc-to-user nonroot system:serviceaccount:$FLUX_NS:kustomize-controller
-
-oc adm policy add-scc-to-user nonroot system:serviceaccount:$FLUX_NS:helm-controller
-
-oc adm policy add-scc-to-user nonroot system:serviceaccount:$FLUX_NS:source-controller
-
-oc adm policy add-scc-to-user nonroot system:serviceaccount:$FLUX_NS:notification-controller
-
-oc adm policy add-scc-to-user nonroot system:serviceaccount:$FLUX_NS:image-automation-controller
-
-oc adm policy add-scc-to-user nonroot system:serviceaccount:$FLUX_NS:image-reflector-controller
-```
-
-### Bootstrap Flux
-
-```
-flux bootstrap github \
-  --owner=$GITHUB_ORGANIZATION \
-  --repository=nestle-openshift-confluent-demo \
-  --path=clusters/production
-```
+### Review the producer-example application deployed in the nestle namespace - this produces messages on a topic named 'producer-9'
