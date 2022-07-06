@@ -22,5 +22,12 @@
 	"remoteUser": "vscode",
 	"features": {
 		"aws-cli": "latest"
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"eamodio.gitlens"
+			]
+		}
 	}
 }
