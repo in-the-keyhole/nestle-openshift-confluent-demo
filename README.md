@@ -5,23 +5,10 @@
 oc login --server=$OPENSHIFT_SERVER --username=$OPENSHIFT_USER --password=$OPENSHIFT_PASSWORD
 ```
 
-## Install Confluent
+### Install Flux via OperatorHub
+Browse to OperatorHub in the Openshift console - find Flux, and choose Install
 
-### Create an Openshift project
-
-```
-oc new-project confluent --display-name=Confluent`
-```
-
-### Add the Confluent Helm repo
-
-```
-helm repo add confluentinc https://packages.confluent.io/helm
-
-helm repo update
-```
-
-### Operators
+#### Operators
 
 > Operators allow for "extensions" of the core k8s capability
 > Replacing a "human operator" they manage applications, automatically ensuring that the current state matches the desired state (control loop)
@@ -29,9 +16,11 @@ helm repo update
 
 > For example, the Confluent Operator plays the role of the Managment Control Plane, ensuring that the desired configuration is achieved
 
-### SCC
+#### SCC
 
->
+> Security context constraints (SCC) that control the actions that a pod can perform and what it has the ability to access.
+> See https://docs.openshift.com/container-platform/3.11/architecture/additional_concepts/authorization.html#security-context-constraints
+
 
 ### Disable the custom pod security context, use the default context
 
