@@ -1,0 +1,71 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: kafka-client-config
+  namespace: nestle
+type: Opaque
+data:
+  kafka.properties: Ym9vdHN0cmFwLnNlcnZlcnM9a2Fma2EuY29uZmx1ZW50LnN2Yy5jbHVzdGVyLmxvY2FsOjkwNzEKc2VjdXJpdHkucHJvdG9jb2w9UExBSU5URVhU
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: producer-example-2
+  namespace: nestle
+spec:
+  serviceName: producer-example-2
+  podManagementPolicy: Parallel
+  replicas: 1
+  selector:
+    matchLabels:
+      app: producer-example-2
+  template:
+    metadata:
+      labels:
+        app: producer-example-2
+    spec:
+      containers:
+      - name: producer-example-2
+        image: confluentinc/cp-kafka:latest
+        command:
+        - /bin/sh
+        - -c
+        - |
+          kafka-producer-perf-test \
+            --topic producer-2  \
+            --record-size 64 \
+            --throughput 1 \
+            --producer.config /mnt/kafka.properties \
+            --num-records 230400
+        volumeMounts:
+        - name: kafka-properties
+          mountPath: /mnt
+          readOnly: true
+        resources:
+          requests:
+            memory: 512Mi # 768Mi
+            cpu: 500m # 1000m
+      volumes:
+        - name: kafka-properties # Create secret with name `kafka-client-config` with client configurations
+          secret:
+            secretName: kafka-client-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: producer-example-2
+  namespace: nestle
+spec:
+  clusterIP: None
+---
+# https://docs.confluent.io/operator/current/co-manage-topics.html#create-ak-topic
+apiVersion: platform.confluent.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: producer-2
+  namespace: confluent
+spec:
+  replicas: 3
+  partitionCount: 1
+  configs:
+    cleanup.policy: "delete"
