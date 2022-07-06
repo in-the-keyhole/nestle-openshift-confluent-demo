@@ -1,4 +1,5 @@
 ---
+# https://fluxcd.io/docs/components/source/helmrepositories/
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
@@ -8,6 +9,7 @@ spec:
   interval: 1m0s
   url: https://packages.confluent.io/helm
 ---
+# https://fluxcd.io/docs/components/helm/helmreleases/
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:

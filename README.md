@@ -1,6 +1,21 @@
 # Nestle Openshift | Confluent Kafka configuration
 
-## Authenticate with Openshift
+This repository contains a [VS Code Remote Container](https://code.visualstudio.com/docs/remote/containers) configuration that provides the following:
+
+* Openshift CLI
+* Helm CLI
+* Flux CLI
+
+To use it, you must provide a .devcontainer/.env file that sets the following environment variables:
+> A template has been provided in .devcontainer/.env-template
+* OPENSHIFT_SERVER - The OpenShift server URL 
+* OPENSHIFT_USER - The Openshift username with admin priveleges
+* OPENSHIFT_PASSWORD - The password for the Openshift user
+* GITHUB_ORGANIZATION - A valid GitHub organization
+* GITHUB_TOKEN - A valid GitHub personal access token (PAT)
+* FLUX_NS=flux-system - The namespace in which to install Flux
+
+### Authenticate with Openshift
 ```
 oc login --server=$OPENSHIFT_SERVER --username=$OPENSHIFT_USER --password=$OPENSHIFT_PASSWORD
 ```
@@ -8,28 +23,34 @@ oc login --server=$OPENSHIFT_SERVER --username=$OPENSHIFT_USER --password=$OPENS
 ### Install Flux via OperatorHub
 Browse to OperatorHub in the Openshift console - find Flux, and choose Install accepting defaults
 
-#### Operators
+> Aside on Operators
 
-> Operators allow for "extensions" of the core k8s capability
-> Replacing a "human operator" they manage applications, automatically ensuring that the current state matches the desired state (control loop)
-> They use "custom resource definitions" (CRDs) to manage application components
-
-> For example, the Confluent Operator plays the role of the Managment Control Plane, ensuring that the desired configuration is achieved
-
+Operators allow for "extensions" of the core k8s capability.
+Replacing a "human operator" they manage applications, automatically ensuring that the current state matches the desired state (control loop).
+They use "custom resource definitions" (CRDs) to manage application components.
 
 ### Bootstrap Flux
+This is the ONLY manual command you will need to apply to manage workloads in Openshift/k8s.  It *bootstraps* the GitOps engine (FluxCD), by creating a [GitRepository](https://fluxcd.io/docs/components/source/gitrepositories/) resource containing the workloads that need to be provisioned/maintained in OpenShift.  It also creates a [Kustomization](https://fluxcd.io/docs/components/kustomize/kustomization/) resource that creates Kustomization resources for Operators, Infrastructure, and Apps (in that order).
+
 ```
 oc apply -f bootstrap/bootstrap.yaml
 ```
 
-This will create a GitRepository pointed to the main branch of this repository, and a Kustomization that will automate deployment of clusters/production.  This will in turn, deploy resources defined by operators, followed by infrastructure, and finally by apps.
-### Expose Control Center Dashboard
+### Control Center Dashboard
 
-> Forward port for Control Center Dashboard
+To expose network access to the Confluent Control Center, you can either:
 
-> Can also create a route to control center service on port 9021
+* Forward port for Control Center Dashboard
 ```
 oc port-forward controlcenter-0 9021:9021
 ```
+> You can then browse to http://localhost:9021
 
-### Review the producer-example application deployed in the nestle namespace - this produces messages on a topic named 'producer-9'
+* Create a route to controlcenter service on port 9021
+```
+oc create route edge --service controlcenter -n confluent
+```
+> This will create a permanant route URL that can be used/bookmarked etc.
+
+### Review the producer-example application deployed in the nestle namespace
+The GitOps defined resources in apps/production create a namspace named *nestle*, and within it, a deployment of an application named *producer_example* that includes the provisioning of a *KafkaTopic* in Confluent. The application produces messages on a timer, pushing then onto a topic named 'producer-0'

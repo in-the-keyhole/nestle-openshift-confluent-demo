@@ -63,6 +63,7 @@ metadata:
 spec:
   clusterIP: None
 ---
+# https://docs.confluent.io/operator/current/co-manage-topics.html#create-ak-topic
 apiVersion: platform.confluent.io/v1beta1
 kind: KafkaTopic
 metadata:
