@@ -6,8 +6,8 @@ This repository contains a [VS Code Remote Container](https://code.visualstudio.
 * Helm CLI
 * Flux CLI
 
-To use it, you must provide a .devcontainer/.env file that sets the following environment variables:
-> A template has been provided in .devcontainer/.env-template
+To use it, follow the [Getting Started](https://code.visualstudio.com/docs/remote/containers#_getting-started) guide, and then you must provide a .devcontainer/.env file that sets the following environment variables:
+> A template has been provided in .devcontainer/.env-template that you can copy and modify
 * OPENSHIFT_SERVER - The OpenShift server URL 
 * OPENSHIFT_USER - The Openshift username with admin priveleges
 * OPENSHIFT_PASSWORD - The password for the Openshift user
