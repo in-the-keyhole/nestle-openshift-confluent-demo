@@ -2,7 +2,7 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageUpdateAutomation
 metadata:
-  name: flux-system
+  name: production-image-update
   namespace: flux-system
 spec:
   interval: 1m0s
@@ -19,6 +19,7 @@ spec:
         name: fluxcdbot
       messageTemplate: '{{range .Updated.Images}}{{println .}}{{end}}'
     push:
+      # This can be changed to push to different branch and utilize pull request process
       branch: main
   update:
     path: ./apps/production
