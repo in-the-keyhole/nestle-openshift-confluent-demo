@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: nestle
+  name: production
 ---
 apiVersion: v1
 kind: Secret
 metadata:
   name: kafka-client-config
-  namespace: nestle
+  namespace: production
 type: Opaque
 data:
   kafka.properties: Ym9vdHN0cmFwLnNlcnZlcnM9a2Fma2EuY29uZmx1ZW50LnN2Yy5jbHVzdGVyLmxvY2FsOjkwNzEKc2VjdXJpdHkucHJvdG9jb2w9UExBSU5URVhU
@@ -16,7 +16,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: producer-example
-  namespace: nestle
+  namespace: production
 spec:
   serviceName: producer-example
   podManagementPolicy: Parallel
@@ -59,7 +59,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: producer-example
-  namespace: nestle
+  namespace: production
 spec:
   clusterIP: None
 ---
