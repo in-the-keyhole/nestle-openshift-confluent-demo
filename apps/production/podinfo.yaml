@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: podinfod
-          image: ghcr.io/stefanprodan/podinfo:5.0.0  # {"$imagepolicy": "nestle:podinfo"}
+          image: ghcr.io/stefanprodan/podinfo:5.0.0  # {"$imagepolicy": "flux-system:podinfo"}
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
@@ -26,7 +26,7 @@ apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
   name: podinfo
-  namespace: nestle
+  namespace: flux-system
 spec:
   imageRepositoryRef:
     name: podinfo
@@ -38,7 +38,7 @@ apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:
   name: podinfo
-  namespace: nestle
+  namespace: flux-system
 spec:
   image: ghcr.io/stefanprodan/podinfo
   interval: 1m0s
