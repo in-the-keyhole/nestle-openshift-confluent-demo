@@ -30,10 +30,14 @@ Replacing a "human operator" they manage applications, automatically ensuring th
 They use "custom resource definitions" (CRDs) to manage application components.
 
 ### Bootstrap Flux
-This is the ONLY manual command you will need to apply to manage workloads in Openshift/k8s.  It *bootstraps* the GitOps engine (FluxCD), by creating a [GitRepository](https://fluxcd.io/docs/components/source/gitrepositories/) resource containing the workloads that need to be provisioned/maintained in OpenShift.  It also creates a [Kustomization](https://fluxcd.io/docs/components/kustomize/kustomization/) resource that creates Kustomization resources for Operators, Infrastructure, and Apps (in that order).
+This is the ONLY manual command you will need to apply to manage workloads in Openshift/k8s.  It *bootstraps* the GitOps engine (FluxCD), by creating a [GitRepository](https://fluxcd.io/docs/components/source/gitrepositories/) resource containing the resources that need to be provisioned/maintained in OpenShift.
 
 ```
-oc apply -f bootstrap/bootstrap.yaml
+flux bootstrap github \
+ --owner=$GITHUB_ORGANIZATION \
+ --repository=nestle-openshift-confluent-demo \
+ --path=clusters/production \
+--read-write-key
 ```
 
 ### Control Center Dashboard
