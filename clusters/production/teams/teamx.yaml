@@ -9,7 +9,7 @@ spec:
   ref:
     branch: main
   secretRef:
-    name: flux-system
+    name: teamx-git
   url: ssh://git@github.com/in-the-keyhole/gitops-teamx
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
