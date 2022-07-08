@@ -73,8 +73,8 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageUpdateAutomation
 metadata:
-  name: teamx-production-image-update
-  namespace: flux-system
+  name: teamx-image-update
+  namespace: production
 spec:
   interval: 1m0s
   sourceRef:
@@ -94,4 +94,30 @@ spec:
       branch: flux-image-updates
   update:
     path: ./production
+    strategy: Setters
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageUpdateAutomation
+metadata:
+  name: teamx-image-update
+  namespace: develop
+spec:
+  interval: 1m0s
+  sourceRef:
+    kind: GitRepository
+    name: teamx
+  git:
+    checkout:
+      ref:
+        branch: main
+    commit:
+      author:
+        email: fluxcdbot@users.noreply.github.com
+        name: fluxcdbot
+      messageTemplate: '{{range .Updated.Images}}{{println .}}{{end}}'
+    push:
+      # This can be changed to push to different branch and utilize pull request process
+      branch: main
+  update:
+    path: ./develop
     strategy: Setters
