@@ -61,14 +61,38 @@ oc create route edge --service controlcenter -n confluent
 The GitOps defined resources in apps/production create a namspace named *nestle*, and within it, a deployment of an application named *producer_example* that includes the provisioning of a *KafkaTopic* in Confluent. The application produces messages on a timer, pushing then onto a topic named 'producer-0'
 
 
-### Other useful commands
+### Steps to Onboard a new team
 
-#### To create a git secret that can be used for setting up team repositories
-> Once created, the deployKey needs to be added to the git repo, and then the secret
-> needs to be sealed, and added to the flux manifests for the team
-```
-flux create secret git teamx-git \
-    --namespace production \
-    --url=ssh://git@github.com/in-the-keyhole/gitops-teamx \
-    --export
-```
+1. Setup (or have the team setup) a GitOps repo that will contain their k8s manifests, kustomizations, and/or Helm releases
+
+2. Create a new manifest under /clusters/production/teams folder _(an existing file in that folder can be copied and modified)_
+
+    The file will need to contain the following:
+
+    - A Sealed Secret to be used for git access to the team GitOps repository by Flux, To create a Sealed Secrete, follow these steps:
+    
+        1. Create git secret for the teams gitops repository, use:
+            ```
+            flux create secret git teamx-git \
+                --namespace production \
+                --url=ssh://git@github.com/in-the-keyhole/gitops-teamx \
+                --export > temp-git-secret.yaml
+            ```
+    
+        2. Copy the geneated deployKey from the temp-git-secret.yaml and add it to the git repo
+
+        3. Generate a Sealed Secret by pressing Cmd+Shft+P and choosing >Seal Kubernetes Secret - File, when prompted:
+
+            - choose 'strict'
+            - give the secret a name
+            - use the tls.crt from kubesystem/secrets/sealed-secrets-keyXXXX
+
+        4. Copy the generated SealedSecret resource into the manifest file created in Step 1. (replace the existing one if copied from another file)
+    
+        5. Delete temp-git-secret.yaml
+
+    - A GitRepository resource pointed to the teams gitops repo and using the secret name created above
+
+    - A Kustomization for production, staging, develop
+
+    - Optionally, an ImageUpdateAutomation resource
