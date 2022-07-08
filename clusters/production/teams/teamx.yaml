@@ -37,7 +37,7 @@ metadata:
   name: teamx-production
   namespace: flux-system
 spec:
-  interval: 10m0s
+  interval: 1m0s
   path: ./production
   prune: true
   sourceRef:
@@ -50,7 +50,7 @@ metadata:
   name: teamx-staging
   namespace: flux-system
 spec:
-  interval: 10m0s
+  interval: 1m0s
   path: ./staging
   prune: true
   sourceRef:
@@ -63,7 +63,7 @@ metadata:
   name: teamx-develop
   namespace: flux-system
 spec:
-  interval: 10m0s
+  interval: 1m0s
   path: ./develop
   prune: true
   sourceRef:

@@ -6,7 +6,7 @@ metadata:
   name: flux-system-develop
   namespace: flux-system
 spec:
-  interval: 10m0s
+  interval: 1m0s
   path: ./clusters/develop
   prune: true
   sourceRef:
