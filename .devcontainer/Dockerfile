@@ -23,3 +23,9 @@ RUN rm oc.tar
 # Install the Flux CLI w bash completion
 RUN curl -s https://fluxcd.io/install.sh | sudo bash
 # RUN ~/.bashrc command -v flux >/dev/null && . <(flux completion bash)
+
+# Install the kubeseal CLI
+RUN curl -L https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.18.0/kubeseal-0.18.0-linux-amd64.tar.gz -o kubeseal-0.18.0-linux-amd64.tar.gz
+RUN tar -zxvf kubeseal-0.18.0-linux-amd64.tar.gz kubeseal
+RUN mv kubeseal /usr/local/bin/kubeseal
+RUN rm kubeseal-0.18.0-linux-amd64.tar.gz

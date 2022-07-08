@@ -59,3 +59,16 @@ oc create route edge --service controlcenter -n confluent
 
 ### Review the producer-example application deployed in the nestle namespace
 The GitOps defined resources in apps/production create a namspace named *nestle*, and within it, a deployment of an application named *producer_example* that includes the provisioning of a *KafkaTopic* in Confluent. The application produces messages on a timer, pushing then onto a topic named 'producer-0'
+
+
+### Other useful commands
+
+#### To create a git secret that can be used for setting up team repositories
+> Once created, the deployKey needs to be added to the git repo, and then the secret
+> needs to be sealed, and added to the flux manifests for the team
+```
+flux create secret git teamx-git \
+    --namespace production \
+    --url=ssh://git@github.com/in-the-keyhole/gitops-teamx \
+    --export
+```
