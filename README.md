@@ -37,7 +37,8 @@ flux bootstrap github \
  --owner=$GITHUB_ORGANIZATION \
  --repository=nestle-openshift-confluent-demo \
  --path=clusters/production \
---read-write-key
+ --components-extra=image-reflector-controller,image-automation-controller \
+ --read-write-key
 ```
 
 ### Control Center Dashboard
