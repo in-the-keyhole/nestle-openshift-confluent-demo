@@ -1,0 +1,14 @@
+# This is only here b/c we are running preprod (develop/staging) in the same cluster - otherwise, we would have boostrapped the cluster to create these Kustomizations
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: flux-system-develop
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  path: ./clusters/develop
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
