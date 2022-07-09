@@ -1,0 +1,16 @@
+# https://fluxcd.io/docs/components/kustomize/kustomization/
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: teams-staging
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  dependsOn:
+    - name: infrastructure-develop
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./teams/staging
+  prune: true
+  wait: true
