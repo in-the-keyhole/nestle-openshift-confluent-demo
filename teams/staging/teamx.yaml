@@ -3,7 +3,7 @@ kind: Kustomization
 metadata:
   name: teamx
 spec:
-  path: ./develop
+  path: ./staging
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageUpdateAutomation
