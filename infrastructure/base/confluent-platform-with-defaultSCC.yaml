@@ -34,8 +34,9 @@ spec:
       requests:
         cpu: "1"
         memory: "4Gi"
-  configs:
-    log.retention.hours: "12"
+  configOverrides:
+    server:
+      - log.retention.hours: "12"
 ---
 apiVersion: platform.confluent.io/v1beta1
 kind: Connect
