@@ -36,7 +36,7 @@ spec:
         memory: "4Gi"
   configOverrides:
     server:
-      - log.retention.hours: "12"
+      - "log.retention.hours: 12"
 ---
 apiVersion: platform.confluent.io/v1beta1
 kind: Connect
