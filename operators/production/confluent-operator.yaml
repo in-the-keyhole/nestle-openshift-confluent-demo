@@ -30,4 +30,5 @@ spec:
     podSecurity:
       enabled: false
     namespaced: false
+    rbac: false
   interval: 1m0s
