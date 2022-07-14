@@ -119,8 +119,8 @@ metadata:
   name: confluent-operator
 subjects:
 - kind: ServiceAccount
-  name: confluent-for-kubernetes # customize as required
-  namespace: confluent # customize as required
+  name: staging # customize as required
+  namespace: staging # customize as required
 roleRef:
   kind: ClusterRole
   name: confluent-operator
