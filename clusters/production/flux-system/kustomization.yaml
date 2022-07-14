@@ -3,8 +3,6 @@ kind: Kustomization
 resources:
   - gotk-components.yaml
   - gotk-sync.yaml
-  - ../operators.yaml
-  # - ../infrastructure.yaml
   - preprod-gotk-sync.yaml # This is only here b/c we are running preprod (develop/staging) in the same cluster - otherwise, we would have boostrapped the cluster to create these Kustomizations
 patches:
   - patch: |
