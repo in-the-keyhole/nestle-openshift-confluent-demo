@@ -61,6 +61,16 @@ oc create route edge --service controlcenter -n confluent
 The GitOps defined resources in apps/production create a namspace named *nestle*, and within it, a deployment of an application named *producer_example* that includes the provisioning of a *KafkaTopic* in Confluent. The application produces messages on a timer, pushing then onto a topic named 'producer-0'
 
 
+### Adding namespaces
+
+Create a new namespace and role-bindings by create a new Flux tenant, for example
+
+```
+flux create tenant staging \
+    --with-namespace=staging \
+    --export >  infrastructure/staging/namespace.yaml
+```
+
 ### Steps to Onboard a new team
 
 1. Setup (or have the team setup) a GitOps repo that will contain their k8s manifests, kustomizations, and/or Helm releases
@@ -71,7 +81,7 @@ The GitOps defined resources in apps/production create a namspace named *nestle*
 
     - A Sealed Secret to be used for git access to the team GitOps repository by Flux, To create a Sealed Secrete, follow these steps:
     
-        1. Create git secret for the teams gitops repository, use:
+        1. Create git secret for the teams gitops repository, for example:
             ```
             flux create secret git teamx-git \
                 --namespace production \
