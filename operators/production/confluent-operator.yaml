@@ -30,6 +30,4 @@ spec:
     podSecurity:
       enabled: false
     namespaced: false
-    # rbac: false
-    # namespaceList: [confluent, staging, production]
   interval: 1m0s
