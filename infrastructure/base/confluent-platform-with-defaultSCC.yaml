@@ -45,6 +45,8 @@ kind: Connect
 metadata:
   name: connect
   namespace: confluent
+  # annotations:
+  #   platform.confluent.io/confluent-hub-install-extra-args: “--worker-configs /dev/null --component-dir /mnt/plugins”
 spec:
   replicas: 1
   image:
@@ -56,6 +58,16 @@ spec:
       requests:
         cpu: "1"
         memory: "4Gi"
+  build:
+    type: onDemand
+    onDemand:
+      plugins:
+        locationType: confluentHub
+        confluentHub:
+          - name: kafka-connect-datagen
+            owner: confluentinc
+            version: 0.5.3
+      storageLimit: 1G
 ---
 apiVersion: platform.confluent.io/v1beta1
 kind: KsqlDB
