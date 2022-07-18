@@ -67,6 +67,9 @@ spec:
           - name: kafka-connect-datagen
             owner: confluentinc
             version: 0.5.3
+          - name: kafka-connect-s3
+            owner: confluentinc
+            version: 10.0.10
       storageLimit: 1G
 ---
 apiVersion: platform.confluent.io/v1beta1
