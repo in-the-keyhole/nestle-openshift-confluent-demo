@@ -83,6 +83,9 @@ spec:
           - name: kafka-connect-s3
             owner: confluentinc
             version: 10.0.10
+          - name: connect-transforms
+            owner: confluentinc
+            version: latest
       storageLimit: 1G
 ---
 apiVersion: platform.confluent.io/v1beta1
