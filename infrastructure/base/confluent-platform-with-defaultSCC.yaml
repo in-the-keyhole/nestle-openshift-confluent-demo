@@ -36,7 +36,7 @@ spec:
         memory: "4Gi"
   configOverrides:
     server:
-      - "log.retention.bytes: 1073741824"
+      - "log.retention.bytes: 250000"
       - "log.retention.hours: 3"
       - "log.cleanup.policy: delete"
 ---
