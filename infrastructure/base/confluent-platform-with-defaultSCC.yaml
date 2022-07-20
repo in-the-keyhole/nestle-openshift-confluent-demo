@@ -58,6 +58,19 @@ spec:
       requests:
         cpu: "1"
         memory: "4Gi"
+    envVars:
+    - name: AWS_ACCESS_KEY_ID
+      valueFrom:
+        secretKeyRef:
+          name: aws-credentials
+          key: access_key
+          optional: false
+    - name: AWS_SECRET_ACCESS_KEY
+      valueFrom:
+        secretKeyRef:
+          name: aws-credentials
+          key: secret_key
+          optional: false
   build:
     type: onDemand
     onDemand:
