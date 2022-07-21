@@ -42,7 +42,7 @@ spec:
       messageTemplate: '{{range .Updated.Images}}{{println .}}{{end}}'
     push:
       # This can be changed to push to different branch and utilize pull request process
-      branch: flux-image-updates
+      branch: flux-production-image-updates
   update:
     path: # set by env overlay
     strategy: Setters
