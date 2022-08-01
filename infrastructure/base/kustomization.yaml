@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - bitnami-sealed-secrets.yaml
   - aws-credentials.yaml
-  - confluent-platform-with-defaultSCC.yaml
+  # - confluent-platform-with-defaultSCC.yaml
