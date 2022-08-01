@@ -23,6 +23,9 @@
 	"features": {
 		"aws-cli": "latest"
 	},
+	"settings": {
+		"kubeseal.executablePath": "/usr/local/bin/kubeseal"
+	},
 	"customizations": {
 		"vscode": {
 			"extensions": [
