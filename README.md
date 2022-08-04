@@ -75,7 +75,7 @@ flux create tenant staging \
 
 1. Setup (or have the team setup) a GitOps repo that will contain their k8s manifests, kustomizations, and/or Helm releases
 
-2. Create a new manifest under /clusters/production/teams folder _(an existing file in that folder can be copied and modified)_
+2. Create a new manifest under /tenants/base folder _(an existing file in that folder can be copied and modified)_
 
     The file will need to contain the following:
 

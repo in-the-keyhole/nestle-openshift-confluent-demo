@@ -1,0 +1,69 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  annotations:
+    sealedsecrets.bitnami.com/cluster-wide: "true"
+  creationTimestamp: null
+  name: team1-git
+spec:
+  encryptedData:
+    identity: AgBEysyptS1UGdovX7mZcs0jYGYT8LCsUjzX9I6YRieiLN7BLc635aAzWSXDjPdn/Yv+4tEkp8FRK73x26nYd/Z7b2Bi4p6uCLIVzxX3nsixX4mhkUgTaIuA4m0aHkFFZ4MvB0PSzATctXQZHn9d/PJAvp8MX9YGRSwMPE+7KqnW7AvLvCFUpVv+cvjjJhlVG1xrjMI3634UOTJNr2/6WfSPY7Z5AafhmPglgfKuUyQNOyzI+nk2Jg1Qz77uyeVdDKURIEoNjFMhNdcYabx+yqhnVWJN8HLIBgAsZkP8Bp0i1a6VfWbq2pqd3t7t99RNe5QIvZftA2+OaWjfDqYbVo1SRlyeDlbpBqoWlETyw2CF7cIMx7z3D7w3R7hcUO91QYivLbbwn4IL4YAmYU/X+D7ZlVbh0bBhwSKDawhdDGBliCnX9G9c9vE53F8BH3PIxHJZ1509Ifxq0CcxYPdtqf9BlpBETOlm5UnWbSOSUgBOu2gXXriOCm8KOUj56A8P9Y/uRW+BRZHu/LqY8A5NpkO8iXaoUbMw3eBeLc9dJo3lDlj+WGX7aA7Cz6LFGjd7b2E5L2HswtzLPMSRE7baPwFFi8WtI7u7aZ3IG1cBpaalg5dZhaNqb+FxqA5h/pc4mhISQTneNmZhSZ9SwG2S58mUieKuzpWwf4527EVWZ/2YlG3lLWSLfDMaE0hruE2PRrqlVwZzEYosqGWFEmTrO5LJyD97VPzFQN0jLWNgolS5VdkbY7AfNcf8tHfbVv0nQyh+fgISTm1HxknAOkekeevS2sHde2aYxMrcjQ1/ic3BXz3QKHDYCOaNVnwbQZUVjF+ZtKLo0xASooScnqQ0SAhNEJdN6Jz/yaHbP+9cHh3yRxr64Dwt8QKlZvK+g6S5IaFLHr+2UAZbl6etoK+UIYaPYZuhCXV34qWcpdR2v5qOunuhieBH8ojTksGkNPwpNjKwbsA6VVHKo7hb4ioTTq3blTktegxv034/ThdVxJYj+JPjro0MDiSL6dHaTnCNsB3Ze5sKQufpCxjH1sxMjEPEBnWNEiPXwebnyy7cymclHBlzNl6/Oazn4lt+yiPAw62Tws83ZsYD1srGeB3s82lAayk=
+    identity.pub: AgChi76FubxqLNrV0EGNqyw5KDeGVl8wseXHBV032VBz0Hrxl92AlkQN/P3sYWTKpSI6l7msoDQj98fTBAKdJMyOwur14y8zZKYZ1t2zSloRY4ICVNAUg+eETCcW41AofmstTmg5bTmM54yW7Pc4yeDqVjiZzXYBZf0uEB4cXw7Wc5kvzbr8h8vICmRgS6XAsfsDVCTQgWYRcWGRMFXRy/MyoxUdrPdAdjqANTZcZZQoWtYZqFRKH5pFLvoWon8vVy37evas3dh7ZN8dHuzj5Fv3IcT2duBKZylHlrvTw5K2QKdSogugjqmEYlBVW5X/aY0BLQNrNMM//lS53z8fonKe8QJm/Z91bHHMsPQvgWANMTpV3gB/17NjTIotRYlwiYUTLbRbR18sTMNBTFhK4NR0nfQLOPG5PAWyQ2Ym6WTPyCXsKkvJAmVtFMjRwW+qMXU5UZCIAxbJ3np8GZezXdzdjoH0a7gyIcngH7g3IFtct0hK16UPrbuZqHlre2L1rV+pSGDcucPkdwfQ88WvxlrmHl1SD+GQzinlI5xnJL/a0+OoB3pdYjg/kIS03w8mYIaOO+1fIqWgkwODcP+poZXXKxmIExYYu4SOgpFZZbPQhkbug39eaFXJc+qI0+Ljd7XxQLYOOmcfSSwjZ9HEpy7Hp96ruKAmGnvhaO4U72nU7l64vcHYNwomiPcEo41LiUUkjJ5M5LT83r9h0AwwhZFr2X+8pflU+Uk3fVdo7RI/4ouWWS2U0K1glCraXqI7QbX/gcoSseDU6z0vhLvPoTqi03R9SHCowwtH7CGoFXNK9Cm8PpDDeJdDOUH1Jc6b0+JUgTLcN/JoCus61mPW6SlE7DeT+eas5j2kvghJ1/nR8W279pKNkivBhlSkJzlE/GRMarMj5u+x7pCTFk4+p5SSVxqMyzvrWC8YVhxIIuxZ5UKhNEDLT2cSIgfLBUa7LS0mut5cRboUwItdup9x
+    known_hosts: AgAQxBiqjhOwICKpKuIt+/bOwqTsyoJkXvzC7gvLMvdKl6gDskvDOnWsBw8hS9l7ITHVCjG+61GoBUJkDmqjBuTIOu9Mw4YioD9KpXsDaayHjgAWyRKDLmyRhE7EMP8d4r1Wc6wvSV5b/PWq7Cb4xJSX9+t091TpOJkh6Yk22LxwURavQO1kc4/7geQCmB+BIE5cKdcsWA3EGrMVKzrh+roM6b8d9trSJEYlEy0gMv+JXg/7M1mBPN9a4FDiwd8IKocRv0N9HM5tYYS1TrPIZiR+3zASb/O6NSOELT26O/bHqoCRCQ/helAd6hLiy3Gr0BM6LfDJmzXOSYvC2qFosErIiTqboa1cFDvsDkEm+dnRkyRqhwuKuo3BnwirGsoCs2qJ1f94LJMl5koAfwbKdqYKx1tpzdkWxD0821gs7A7SUIP2kVqmI7Euu7orndjodj4+vhs1BLqHYsh+pT0PPnIzdYdHzUf98WBikVX4FdDmIeziHE3PR5NJMvHFysI9cPmanaPlG8gRMSna0uKHqBkJz3zvfQnCFfK/teKDx5fw3MUqgl3rh89tcL1EGPDmRnDPWa3dlQ5zpUpb10oTAkHYkMvqfQ/tQC0lcwikrxm4hT5g2E3EJfK+hRNXUQcxlUiF2LDRnEvsvs9d1EQGruIrt6kdGvXS2G7COBTgWZI665/URkLpScU5auC5B2Ry+jt22tTlKqmm3PlUeSav1LYErYOV6OxfPW4Ag9e/ebuVx9HZZP8IB614QhJTjl3hZYILlmSBbn9LD6R/kDEqn5Ez99j0OGyWu+UeACerv8igh+LnbOrujUtRA+hoEpfsRvfkOnpFvH/QWrMwtY/3Z5s9XfN3q1V2vp38vha91nGy+NpWoTz43Bjf+i3AQ8qU5rtvKkE6SW0BUtcLGswUeJWZd2z1ueG901gJPqQ=
+  template:
+    data: null
+    metadata:
+      annotations:
+        sealedsecrets.bitnami.com/cluster-wide: "true"
+      creationTimestamp: null
+      name: team1-git
+    type: Opaque
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: team1
+spec:
+  interval: 1m0s
+  ref:
+    branch: main
+  secretRef:
+    name: team1-git
+  url: ssh://git@github.com/in-the-keyhole/gitops-team1
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: team1
+spec:
+  interval: 1m0s
+  path: # set by env overlay
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: team1
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageUpdateAutomation
+metadata:
+  name: team1-image-update
+spec:
+  interval: 1m0s
+  sourceRef:
+    kind: GitRepository
+    name: team1
+  git:
+    checkout:
+      ref:
+        branch: main
+    commit:
+      author:
+        email: fluxcdbot@users.noreply.github.com
+        name: fluxcdbot
+      messageTemplate: '{{range .Updated.Images}}{{println .}}{{end}}'
+    push:
+      # This can be changed to push to different branch and utilize pull request process
+      branch: flux-production-image-updates
+  update:
+    path: # set by env overlay
+    strategy: Setters
