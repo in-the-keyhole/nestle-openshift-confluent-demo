@@ -5,4 +5,4 @@ resources:
   - ../base
 patchesStrategicMerge:
   - teamx.yaml
-  - team1.yaml
+  # - team1.yaml
