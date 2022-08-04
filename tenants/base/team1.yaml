@@ -62,8 +62,8 @@ spec:
         name: fluxcdbot
       messageTemplate: '{{range .Updated.Images}}{{println .}}{{end}}'
     push:
-      # This can be changed to push to different branch and utilize pull request process
-      branch: flux-production-image-updates
+      # This can be changed to push to different branch and utilize pull request process i.e. flux-production-image-updates
+      branch: main
   update:
     path: # set by env overlay
     strategy: Setters
